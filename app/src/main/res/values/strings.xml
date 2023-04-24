@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CoffeeShop</string>
+    <string name="thank_you">Thank you!</string>
+    <string name="coffee_shop">Coffee Shop</string>
+    <string name="toppings_title">TOPPINGS</string>
+    <string name="whipped_cream">Whipped Cream</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="decrease">-</string>
+    <string name="increase">+</string>
+    <string name="price_title">PRICE:</string>
+    <string name="btn_order">Order</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="enter_your_name">Enter your name</string>
+</resources>

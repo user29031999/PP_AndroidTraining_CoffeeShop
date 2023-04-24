@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10sp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_coffee_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="@string/coffee_shop"
+        app:drawableStartCompat="@drawable/ic_coffee_maker_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_coffee_shop" />
+
+    <Space
+        android:id="@+id/space_name_toppings"
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_toppings"
+        app:layout_constraintTop_toBottomOf="@id/et_user_name" />
+
+    <TextView
+        android:id="@+id/tv_toppings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/toppings_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space_name_toppings" />
+
+    <CheckBox
+        android:id="@+id/cb_topping_whippedcream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/whipped_cream"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_toppings" />
+
+    <CheckBox
+        android:id="@+id/cb_topping_chocolate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chocolate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_topping_whippedcream" />
+
+    <Space
+        android:id="@+id/space_toppings_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_quantity"
+        app:layout_constraintTop_toBottomOf="@id/cb_topping_chocolate" />
+
+    <TextView
+        android:id="@+id/tv_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity: 0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/space_toppings_quantity" />
+
+    <Button
+        android:id="@+id/btn_quantity_remove"
+        android:layout_width="50sp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="@string/decrease"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_quantity" />
+
+    <Button
+        android:id="@+id/btn_quantity_add"
+        android:layout_width="50sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/increase"
+        app:layout_constraintStart_toEndOf="@id/btn_quantity_remove"
+        app:layout_constraintTop_toBottomOf="@id/tv_quantity" />
+
+    <TextView
+        android:id="@+id/tv_price_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_quantity_add" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$0.00"
+        app:layout_constraintStart_toEndOf="@id/tv_price_title"
+        app:layout_constraintTop_toBottomOf="@id/btn_quantity_add" />
+
+    <Space
+        android:id="@+id/space_price_order"
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_order"
+        app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+    <Button
+        android:id="@+id/btn_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="@string/btn_order"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/space_price_order" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="@string/btn_cancel"
+        app:layout_constraintStart_toEndOf="@id/btn_order"
+        app:layout_constraintTop_toBottomOf="@id/space_price_order" />
+
+    <TextView
+        android:id="@+id/tv_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_order" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
