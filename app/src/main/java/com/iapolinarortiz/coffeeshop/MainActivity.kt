@@ -10,40 +10,49 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.iapolinarortiz.coffeeshop.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var activityMainBinding: ActivityMainBinding
+    private var totalPrice = 0.0
+    private var name = "No name"
+    private var hasChocolate = false
+    private var hasWhippedCream = false
+    private var quantity = 0
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("OnCreated", "OnCreate getting called")
-        setContentView(R.layout.activity_main)
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
 
-        val quantityTextView: TextView = findViewById(R.id.tv_quantity)
-        val tvPrice: TextView = findViewById(R.id.tv_price)
-        val cbWhippedCream: CheckBox = findViewById(R.id.cb_topping_whippedcream)
+        val quantityTextView: TextView = activityMainBinding.tvQuantity
+        val tvPrice: TextView = activityMainBinding.tvPrice
+        val cbWhippedCream: CheckBox = activityMainBinding.cbToppingWhippedcream
         cbWhippedCream.setOnCheckedChangeListener { _, isChecked ->
             hasWhippedCream = isChecked
             getTotalPrice(tvPrice)
         }
-        val cbChocolate: CheckBox = findViewById(R.id.cb_topping_chocolate)
+        val cbChocolate: CheckBox = activityMainBinding.cbToppingChocolate
         cbChocolate.setOnCheckedChangeListener { _, isChecked ->
             hasChocolate = isChecked
             getTotalPrice(tvPrice)
         }
-        val etName: EditText = findViewById(R.id.et_user_name)
+        val etName: EditText = activityMainBinding.etUserName
         etName.addTextChangedListener { text: Editable? -> name = text.toString() }
-        val tvOrderTicket: TextView = findViewById(R.id.tv_ticket)
-        val btnOrder: Button = findViewById(R.id.btn_order)
+        val tvOrderTicket: TextView = activityMainBinding.tvTicket
+        val btnOrder: Button = activityMainBinding.btnOrder
         btnOrder.setOnClickListener {
             getTotalPrice(tvPrice)
-            tvOrderTicket.text = "Name: ${name}\n" +
-                    "Quantity: $quantity cups of coffee\n" +
-                    "Total price: $totalPrice\n" +
-                    "Whipped cream: $hasWhippedCream\n" +
-                    "Chocolate: $hasChocolate\n" +
+            tvOrderTicket.text = "Name: ${this.name}\n" +
+                    "Quantity: ${this.quantity} cups of coffee\n" +
+                    "Total price: ${this.totalPrice}\n" +
+                    "Whipped cream: ${this.hasWhippedCream}\n" +
+                    "Chocolate: ${this.hasChocolate}\n" +
                     "Thank you!"
         }
-        val btnCancel: Button = findViewById(R.id.btn_cancel)
+        val btnCancel: Button = activityMainBinding.btnCancel
         btnCancel.setOnClickListener {
             cancelOrder(
                 quantityTextView,
@@ -54,18 +63,16 @@ class MainActivity : AppCompatActivity() {
                 tvOrderTicket
             )
         }
-        val increaseButton: Button = findViewById(R.id.btn_quantity_add)
+        val increaseButton: Button = activityMainBinding.btnQuantityAdd
         increaseButton.setOnClickListener {
-            quantity += 1
+            this.quantity += 1
             manageQuantity(cbWhippedCream, cbChocolate, btnOrder, quantityTextView, tvPrice)
         }
-        val decreaseButton: Button = findViewById(R.id.btn_quantity_remove)
+        val decreaseButton: Button = activityMainBinding.btnQuantityRemove
         decreaseButton.setOnClickListener {
-            quantity = if (quantity <= 0) 0 else quantity - 1
+            this.quantity = if (quantity <= 0) 0 else quantity - 1
             manageQuantity(cbWhippedCream, cbChocolate, btnOrder, quantityTextView, tvPrice)
         }
-
-        enableOptions(quantity > 0, cbWhippedCream, cbChocolate, btnOrder)
     }
 
     private fun manageQuantity(
@@ -152,10 +159,5 @@ class MainActivity : AppCompatActivity() {
         var CUP_PRICE = 5.00
         var CREAM_PRICE = 1.0
         var CHOCOLATE_PRICE = 2.0
-        var totalPrice = 0.0
-        var name = "No name"
-        var hasChocolate = false
-        var hasWhippedCream = false
-        var quantity = 0
     }
 }
